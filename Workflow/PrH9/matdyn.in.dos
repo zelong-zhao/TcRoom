@@ -1,0 +1,13 @@
+ &input
+    asr='simple',
+    amass(2)=140.908,
+    amass(1)=1.008,
+    flfrc='elph333.fc',
+    flfrq='elph333.freq',
+    dos=.true.
+    fldos='phonon.dos',
+    nk1=9,
+    nk2=9,
+    nk3=9,
+    ndos=500
+ /

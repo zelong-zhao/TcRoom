@@ -1,0 +1,60 @@
+#!/bin/bash --login
+
+#PBS -N qe_job
+#PBS -l select=1
+#PBS -l walltime=00:20:00
+#PBS -A e606
+#PBS -e error.txt
+#PBS -o output.txt
+
+
+# Make sure any symbolic links are resolved to absolute path
+export PBS_O_WORKDIR=$(readlink -f $PBS_O_WORKDIR)
+
+# Change to the directory that the job was submitted from
+cd $PBS_O_WORKDIR
+
+# Load the Quantum Espresso module
+# module load espresso/4.0.3-EPW-mkl
+
+# Make sure temporary files go to the /work filesystem
+export TMPDIR=$PBS_O_WORKDIR
+#export ESPRESSO_TMPDIR=$PBS_O_WORKDIR
+#export ESPRESSO_PSEUDO='/work/e606/e606/zlzhao/material-for-ljubljana-qe-summer-school-master/pseudo/'
+
+# Run the Quantum Espresso executable "pw.x"
+export OMP_NUM_THREADS=1
+
+# scf with a2f large k 
+
+#aprun -n 144 pw.x -npool 8 < scf.fit.in > scf.fit.out
+
+# scf without a2f small k
+
+#aprun -n 144 pw.x -npool 8 < scf.in > scf.out
+
+# find DOS dense k
+#aprun -n 96 pw.x < nscf.in > nscf.out
+#aprun -n 96 dos.x < dos.in > dos.out
+#aprun gnuplot dos.gnuplot
+# find phonon
+#aprun -n 144 ph.x -npool 8 < elph.in > elph.out
+# FFT
+#aprun q2r.x < q2r.in > q2r.out
+
+#go for isotropic Tc
+
+# PostProccess
+#aprun matdyn.x < matdyn.freq.in > matdyn.freq.out
+#aprun matdyn.x < matdyn.dos.in > matdyn.dos.out
+#aprun lambda.x < lambda.in > lambda.out
+
+#aprun gnuplot a2F.gnuplot
+#aprun gnuplot phonon_dos.gnuplot
+#aprun gnuplot phonon_freq.gnuploy
+
+#Go for aniotropic Tc
+#python pp.py
+##after nscf
+#aprun -n 96 epw.x < epw.in > epw.out
+#bug not really working with spin polarized. 

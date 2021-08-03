@@ -1,0 +1,11 @@
+ &DOS
+    prefix = 'PrH9',
+    outdir = './OUTPUT',
+    fildos = 'PrH9.dos',
+!   bz_sum = 'smearing',
+!   ngauss = 0
+!   degauss = 0.001
+    Emin = -45, 
+    Emax = 62
+ /
+

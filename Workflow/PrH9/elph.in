@@ -1,0 +1,18 @@
+Electron-phonon coefficients for PrH9
+ &inputph
+  recover=.true.
+  tr2_ph=1.0d-16,
+  prefix='PrH9',
+  fildvscf='elphdv',
+  amass(1)=1.008,
+  amass(2)=140.908,
+  outdir='./OUTPUT/',
+  fildyn='elph.dyn.xml',
+  alpha_mix=0.4,  
+  electron_phonon='simple',
+  el_ph_sigma=0.02,
+  el_ph_nsigma=10,
+  trans=.true.,
+  ldisp=.true.
+  nq1=3, nq2=3, nq3=3
+ /
